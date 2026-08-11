@@ -29,10 +29,14 @@ const emptyDefaults: FormValues = {
   nota: "",
 };
 
-export function ReservationForm() {
+export function ReservationForm({
+  initialGuestName,
+}: {
+  initialGuestName?: string;
+}) {
   const navigate = useNavigate();
   const qc = useQueryClient();
-  const [guestName, setGuestName] = useState<string>("");
+  const [guestName, setGuestName] = useState<string>(initialGuestName ?? "");
 
   const {
     register,
@@ -43,7 +47,10 @@ export function ReservationForm() {
     control,
     watch,
   } = useForm<FormValues>({
-    defaultValues: emptyDefaults,
+    defaultValues: {
+      ...emptyDefaults,
+      guestName: (initialGuestName ?? "") as FormValues["guestName"],
+    },
     mode: "onSubmit",
   });
 
@@ -71,7 +78,7 @@ export function ReservationForm() {
       qc.invalidateQueries({ queryKey: ["reservation", guestName] });
       navigate({
         to: "/gracias",
-        search: { updated: result.isUpdate },
+        search: { updated: result.isUpdate, nombre: guestName },
       });
     },
   });

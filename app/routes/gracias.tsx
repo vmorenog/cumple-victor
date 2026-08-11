@@ -8,6 +8,7 @@ const searchSchema = z.object({
     .union([z.boolean(), z.literal("true"), z.literal("1"), z.literal(1)])
     .optional()
     .transform((v) => v === true || v === "true" || v === "1" || v === 1),
+  nombre: z.string().optional(),
 });
 
 export const Route = createFileRoute("/gracias")({
@@ -16,7 +17,7 @@ export const Route = createFileRoute("/gracias")({
 });
 
 function GraciasPage() {
-  const { updated } = Route.useSearch();
+  const { updated, nombre } = Route.useSearch();
 
   return (
     <div className="card rotate-[-0.4deg] text-center relative overflow-hidden">
@@ -39,7 +40,7 @@ function GraciasPage() {
       <Flourish className="mx-auto mt-6 block max-w-[220px] text-olive opacity-80" />
 
       <div className="mt-6 flex justify-center">
-        <Link to="/" className="ghost-btn">
+        <Link to="/" search={nombre ? { nombre } : {}} className="ghost-btn">
           ← Cambiar mi respuesta
         </Link>
       </div>

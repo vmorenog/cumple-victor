@@ -2,6 +2,7 @@ import {
   createRootRouteWithContext,
   Outlet,
   ScrollRestoration,
+  useRouterState,
 } from "@tanstack/react-router";
 import { Meta, Scripts } from "@tanstack/react-start";
 import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
@@ -36,8 +37,11 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({
+    select: (s) => s.location.pathname,
+  });
   return (
-    <RootDocument>
+    <RootDocument wide={pathname.startsWith("/admin")}>
       <QueryClientProvider client={queryClient}>
         <Outlet />
       </QueryClientProvider>
@@ -45,14 +49,21 @@ function RootComponent() {
   );
 }
 
-function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+function RootDocument({
+  children,
+  wide,
+}: Readonly<{ children: ReactNode; wide?: boolean }>) {
   return (
     <html lang="es">
       <head>
         <Meta />
       </head>
       <body>
-        <main className="relative z-10 mx-auto flex max-w-[640px] flex-col gap-7 px-5 pt-8 pb-24">
+        <main
+          className={`relative z-10 mx-auto flex flex-col gap-7 px-5 pt-8 pb-24 ${
+            wide ? "max-w-[1100px]" : "max-w-[640px]"
+          }`}
+        >
           {children}
         </main>
         <ScrollRestoration />
