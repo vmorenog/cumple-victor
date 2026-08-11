@@ -1,8 +1,6 @@
-import { Flourish } from "./icons";
-
 export function MenuPreview() {
   return (
-    <section className="card" aria-labelledby="menu-title">
+    <section aria-labelledby="menu-title">
       <h2 id="menu-title" className="section-title">
         El menú
       </h2>
@@ -34,7 +32,6 @@ export function MenuPreview() {
         ]}
       />
 
-      <Flourish className="mx-auto mt-5 block max-w-[260px] text-olive opacity-80" />
     </section>
   );
 }

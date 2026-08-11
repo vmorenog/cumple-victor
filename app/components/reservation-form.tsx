@@ -14,7 +14,8 @@ import {
   getReservationByName,
   upsertReservation,
 } from "~/server/reservations";
-import { WhatsAppIcon } from "./icons";
+import { Flourish, WhatsAppIcon } from "./icons";
+import { MenuPreview } from "./menu-preview";
 
 type FormValues = ReservationInput;
 
@@ -86,7 +87,16 @@ export function ReservationForm() {
       noValidate
       onSubmit={handleSubmit((values) => submit.mutate(values))}
     >
-      <h2 className="section-title">Tu elección</h2>
+      <MenuPreview />
+
+      <Flourish className="mx-auto block max-w-[260px] text-olive opacity-80" />
+
+      <div>
+        <h2 className="section-title">Tu plato principal</h2>
+        <span className="mt-1 block text-center font-mono text-[11px] tracking-[0.2em] uppercase text-olive">
+          — Elige el tuyo —
+        </span>
+      </div>
 
       {wasPrefilled ? (
         <p className="rounded-lg border border-dashed border-olive/60 bg-card-light px-4 py-3 text-center font-serif italic text-[14px] text-ink-2">
