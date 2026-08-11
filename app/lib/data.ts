@@ -2,12 +2,12 @@
 // Compartido entre cliente y servidor (validación).
 
 export const GUESTS = [
-  "Víctor (el cumpleañero)",
+  "Víctor",
   "Lydia",
   "Sandra",
   "Alen",
-  "Mama",
-  "Papa",
+  "Inma",
+  "Paco",
   "Angus",
   "Manel",
   "Judith",
@@ -15,7 +15,7 @@ export const GUESTS = [
   "Isa",
   "Nando",
   "Ferran",
-  "Yaya M Luz",
+  "Yaya Mari Luz",
   "Adrià",
   "Blanca",
   "Jose Antonio",
