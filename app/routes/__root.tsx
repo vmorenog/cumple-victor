@@ -30,7 +30,11 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
           "Reserva tu menú para el cumple de Víctor en Casa Obdulia — elige plato, postre y bebida.",
       },
     ],
-    links: [{ rel: "stylesheet", href: globalCss }],
+    links: [
+      { rel: "stylesheet", href: globalCss },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+    ],
   }),
   component: RootComponent,
 });
